@@ -176,6 +176,10 @@ def adapt_edrpou(value):
         value += '0'
     elif len(value) == 6:
         value += '09'
+    elif len(value) == 9:
+        value = value[0:8]
+    elif len(value) == 10:
+        value = value[0:8]
     return value
 
 
