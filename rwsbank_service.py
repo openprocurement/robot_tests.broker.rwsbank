@@ -174,6 +174,8 @@ def adapt_edrpou(value):
     value = str(value)
     if len(value) == 7:
         value += '0'
+    elif len(value) == 6:
+        value += '09'
     return value
 
 
