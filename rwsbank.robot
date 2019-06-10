@@ -305,7 +305,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Input Text  name=Lot[auctions][1][tenderingDuration]  ${duration}
     Input Text  name=Lot[auctions][2][auctionParameters][dutchSteps]  20
     Scroll To And Click Element  id=btn-submit-form
-    Wait Until Element Is Visible  xpath=//a[contains(@href, "lot/view")]
+    Wait Until Element Is Visible  name=verification_submit
     Click Element  name=verification_submit
     Wait Until Element Is Visible  xpath=//*[@data-test-id="status"][contains(text(), "Перевірка доступності об’єкту")]
 
