@@ -282,12 +282,13 @@ ${host}  https://test.torgy.rwsbank.com.ua
     ${guarantee}=  Convert To String  ${auction.guarantee.amount}
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
-    Wait Until Element Is Visible  id=auctions-checkBox
-    Click Element  id=auctions-checkBox
+    Wait Until Element Is Visible  xpath=//input[@id='auctions-checkBox']
+    Click Element  xpath=//input[@id='auctions-checkBox']
     Wait Until Element Is Visible  id=value-value-0-amount
     Input Text  name=Lot[auctions][0][value][amount]  ${value_amount}
     ${tax}=  Set Variable If  ${auction.value.valueAddedTaxIncluded}  1  0
     Select From List By Value   name=Lot[auctions][0][value][valueAddedTaxIncluded]  ${tax}
+    Wait Until Element Is Visible  xpath=//input[@id='value-minimalstep-0-amount']
     Input Text  xpath=//input[@id='value-minimalstep-0-amount']  ${minimalStep}
     Input Text  name=Lot[auctions][0][guarantee][amount]  ${guarantee}
     Input Date Auction  name=Lot[auctions][0][auctionPeriod][startDate]  ${auction.auctionPeriod.startDate}
