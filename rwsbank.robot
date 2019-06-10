@@ -411,13 +411,18 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 Завантажити ілюстрацію в лот
     [Arguments]  ${username}  ${tender_uaid}  ${filepath}
+    rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
+    Click Element  xpath=//a[contains(@href, "lot/update")]
     rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  illustration
+    Scroll To And Click Element  id=btn-submit-form
+    Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
+    Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
+    ...  Синхронізуватися із ЦБД
+    ...  AND  Page Should Not Contain  Документ завантажується...
 
 
 Завантажити документ в лот з типом
     [Arguments]  ${username}  ${tender_uaid}  ${file_path}  ${doc_type}
-    rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
-    Click Element  xpath=//a[contains(@href, "lot/update")]
     Wait Until Element Is Visible  id=decision-title
     Choose File  xpath=(//*[@action="/tender/fileupload"]/input)[last()]  ${file_path}
     Sleep  2
@@ -426,11 +431,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Input Text  id=document-${last_input_number}-title  ${file_path.split('/')[-1]}
     Select From List By Value  id=document-${last_input_number}-level  lot
     Select From List By Value  id=document-${last_input_number}-documenttype  ${doc_type}
-    Scroll To And Click Element  id=btn-submit-form
-    Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
-    Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
-    ...  Синхронізуватися із ЦБД
-    ...  AND  Page Should Not Contain  Документ завантажується...
+
 
 
 Завантажити документ в умови проведення аукціону
@@ -491,7 +492,15 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 Завантажити документ для видалення лоту
     [Arguments]  ${username}  ${tender_uaid}  ${file_path}
+    rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
+    Click Element  xpath=//a[contains(@href, "lot/update")]
+    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
     rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  cancellationDetails
+    Scroll To And Click Element  id=btn-submit-form
+    Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
+    Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
+    ...  Синхронізуватися із ЦБД
+    ...  AND  Page Should Not Contain  Документ завантажується...
 
 Видалити лот
     [Arguments]  ${username}  ${tender_uaid}
