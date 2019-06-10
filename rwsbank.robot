@@ -491,7 +491,6 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 Завантажити документ для видалення лоту
     [Arguments]  ${username}  ${tender_uaid}  ${file_path}
-    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
     rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  cancellationDetails
 
 Видалити лот
