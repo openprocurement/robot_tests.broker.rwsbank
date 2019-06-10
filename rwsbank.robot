@@ -264,7 +264,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
 Створити лот
     [Arguments]  ${username}  ${tender_data}  ${asset_uaid}
     rwsbank.Пошук об’єкта МП по ідентифікатору  ${username}  ${asset_uaid}
-    Click Element  xpath=//a[contains(@href, "lot/create?asset")]
+    Click Element  xpath=//a[contains(text(),'Створити інформаційне повідомлення')]
     ${decision_date}=  Convert Date  ${tender_data.data.decisions[0].decisionDate}  date_format=%Y-%m-%d  result_format=%d/%m/%Y
     Input Text   name=Lot[decisions][0][decisionDate]   ${decision_date}
     Input Text   name=Lot[decisions][0][decisionID]   ${tender_data.data.decisions[0].decisionID}
