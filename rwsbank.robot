@@ -375,7 +375,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     ...  ELSE IF  'value.amount' in '${field}'  Get Text  xpath=(//div[contains(text(), "Початкова ціна продажу")]/following-sibling::div)[${lot_index + 1}]
     ...  ELSE IF  'minimalStep.amount' in '${field}'  Get Text  xpath=(//div[contains(text(), "Крок аукціону")]/following-sibling::div)[${lot_index + 1}]
     ...  ELSE IF  'guarantee.amount' in '${field}'  Get Text  xpath=(//div[contains(text(), "Гарантійний внесок")]/following-sibling::div)[${lot_index + 1}]
-    ...  ELSE IF  'tenderingDuration' in '${field}'  Get Text  xpath=(//div[contains(text(), "Період на подачу пропозицій")]/following-sibling::div)[${lot_index + 1}]
+    ...  ELSE IF  'tenderingDuration' in '${field}'  Get Text  xpath=(//div[contains(text(), "Період на подачу пропозицій")]/following-sibling::div)[${lot_index}]
     ...  ELSE IF  'auctionPeriod.startDate' in '${field}'  Get Text  xpath=(//div[contains(text(), "Період початку першого аукціону циклу")]/following-sibling::div)[${lot_index + 1}]
     ...  ELSE IF  'status' in '${field}'  Get Text  xpath=(//div[@data-test-id="auction.status"])[${lot_index + 1}]
     ...  ELSE IF  'tenderAttempts' in '${field}'  Get Text  xpath=(//span[@data-test-id="auction.tenderAttempts"])[${lot_index + 1}]
