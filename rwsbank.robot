@@ -470,18 +470,19 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 
 Внести зміни в актив лоту
-    [Arguments]  ${username}  ${item_id}  ${tender_uaid}  ${field_name}  ${field_value}
+    [Arguments]  ${username}  ${item_id}  ${tender_uaid}  ${field_name}  ${field_value}  ${filepath}
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
     Wait Until Element Is Visible  id=decision-title
     ${quantity}=  Convert To String  ${field_value}
     Run Keyword If   '${field_name}' == 'quantity'  Input Text  xpath=//input[contains(@value, "${item_id}")]/../../following-sibling::div[2]/descendant::input[contains(@name, "quantity")]  ${quantity}
+    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
 
 
 Внести зміни в умови проведення аукціону
-    [Arguments]  ${username}  ${tender_uaid}  ${fieldname}  ${fieldvalue}  ${index}
+    [Arguments]  ${username}  ${tender_uaid}  ${fieldname}  ${fieldvalue}  ${index}  ${filepath}
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
     Wait Until Element Is Visible  id=decision-title
@@ -489,6 +490,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     ...  ELSE IF  '${fieldname}' == 'minimalStep.amount'  Input Amount  name=Lot[auctions][${index}][minimalStep][amount]  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'guarantee.amount'  Input Amount  name=Lot[auctions][${index}][guarantee][amount]  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'auctionPeriod.startDate'  Input Date Auction  name=Lot[auctions][${index}][auctionPeriod][startDate]  ${fieldvalue}
+    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
 
