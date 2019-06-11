@@ -457,13 +457,14 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 
 Внести зміни в лот
-    [Arguments]  ${username}  ${tender_uaid}  ${fieldname}  ${fieldvalue}
+    [Arguments]  ${username}  ${tender_uaid}  ${fieldname}  ${fieldvalue}  ${filepath}
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
     Wait Until Element Is Visible  id=decision-title
     Run Keyword If  '${fieldname}' == 'title'  Input Text  id=lot-title  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'description'  Input Text  id=lot-description  ${fieldvalue}
     ...  ELSE  Input Text  xpath=//*[@id="${field_name}"]  ${field_value}
+    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
 
