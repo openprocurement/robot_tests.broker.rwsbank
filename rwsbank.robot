@@ -414,6 +414,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
     rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  illustration
+    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
     Scroll To And Click Element  id=btn-submit-form
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
     Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
