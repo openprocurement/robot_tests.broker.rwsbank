@@ -404,7 +404,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     ${index}=  Set Variable  ${field.split('[')[1].split(']')[0]}
     ${index}=  Convert To Integer  ${index}
     ${value}=  Run Keyword If  'title' in '${field}'  Get Text  xpath=(//div[@data-test-id="decision.title"])[${index + 1}]
-    ...  ELSE IF  'decisionDate' in '${field}'  Get Text  xpath=(//div[@data-test-id="decision.decisionDate"])[${index}]
+    ...  ELSE IF  'decisionDate' in '${field}'  Get Text  xpath=(//div[@data-test-id="decision.decisionDate"])[${index + 1}]
     ...  ELSE IF  'decisionID' in '${field}'  Get Text  xpath=(//div[@data-test-id="decision.decisionID"])[${index + 1}]
     [Return]  ${value}
 
