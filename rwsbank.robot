@@ -634,7 +634,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     [Arguments]  ${username}  ${tender_uaid}
     rwsbank.Пошук Тендера По Ідентифікатору  ${username}  ${tender_uaid}
     Scroll To And Click Element  //button[@name="delete_bids"]
-    Wait Until Element Is Visible  //*[@class="bootbox-body"][contains(text(), "Видалити ставки")]
+    Wait Until Element Is Visible  //*[@class="bootbox-body"][contains(text(), "Видалити ставку?")]
     Click Element  //button[contains(text(), "Застосувати")]
     Wait Until Element Is Visible  xpath=//div[contains(@class,'alert-success')]
 
