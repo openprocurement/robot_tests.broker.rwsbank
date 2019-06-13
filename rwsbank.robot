@@ -983,7 +983,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Wait Until Keyword Succeeds  10 x  1 s  Wait Until Element Is Visible  xpath=//button[contains(text(), 'Завантажити дані')]
     Click Element  xpath=//div[contains(text(), 'Додати документ')]
     Choose File  xpath=//input[contains(@id,"ajax-upload-id")]  ${file_path}
-    Wait Until Page Contains Element  //select[@id="document-0-documenttype"] /option[contains(text(),"Наказ про завершення приватизації об’єкта")]
+    Wait Until Page Contains Element  //select[@id='document-0-documenttype'] /option[contains(text(), 'Наказ про приватизацію')]
     Select From List By Value  xpath=//select[@id="document-0-documenttype"]  approvalProtocol
     ${date_nakaz}=  Convert Date  ${dateMet.split("+")[0]}   date_format=%Y-%m-%dT%H:%M:%S  result_format=%d.%m.%Y %H:%M
     Execute Javascript  $("[name='Milestone[dateMet]']")[0].value = "${date_nakaz}"
