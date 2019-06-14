@@ -1117,4 +1117,4 @@ Position Should Equals
     ${current_vert_pos}=  Get Vertical Position  ${locator}
     ${status}=  Run Keyword And Return Status  Should Be Equal  ${prev_vert_pos}  ${current_vert_pos}
     Set Test Variable  ${prev_vert_pos}  ${current_vert_pos}
-"lot/create?asset"    Should Be True  ${status}
+    Should Be True  ${status}
