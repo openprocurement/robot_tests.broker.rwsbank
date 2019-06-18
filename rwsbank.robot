@@ -462,7 +462,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 
 Внести зміни в лот
-    [Arguments]  ${username}  ${tender_uaid}  ${fieldname}  ${fieldvalue}  ${file_path}
+    [Arguments]  ${username}  ${tender_uaid}  ${fieldname}  ${fieldvalue}
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
     Wait Until Element Is Visible  id=decision-title
@@ -475,7 +475,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 
 Внести зміни в актив лоту
-    [Arguments]  ${username}  ${item_id}  ${tender_uaid}  ${field_name}  ${field_value}  ${file_path}
+    [Arguments]  ${username}  ${item_id}  ${tender_uaid}  ${field_name}  ${field_value}
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
     Wait Until Element Is Visible  id=decision-title
@@ -487,7 +487,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 
 Внести зміни в умови проведення аукціону
-    [Arguments]  ${username}  ${tender_uaid}  ${fieldname}  ${fieldvalue}  ${index}  ${file_path}
+    [Arguments]  ${username}  ${tender_uaid}  ${fieldname}  ${fieldvalue}  ${index}
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
     Wait Until Element Is Visible  id=decision-title
