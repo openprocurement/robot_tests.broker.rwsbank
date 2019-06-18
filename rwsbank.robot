@@ -469,7 +469,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Run Keyword If  '${fieldname}' == 'title'  Input Text  id=lot-title  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'description'  Input Text  id=lot-description  ${fieldvalue}
     ...  ELSE  Input Text  xpath=//*[@id="${field_name}"]  ${field_value}
-    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
+    rwsbank.Обрати файл з необхідним типом  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
 
