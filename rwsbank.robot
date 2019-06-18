@@ -469,7 +469,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Run Keyword If  '${fieldname}' == 'title'  Input Text  id=lot-title  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'description'  Input Text  id=lot-description  ${fieldvalue}
     ...  ELSE  Input Text  xpath=//*[@id="${field_name}"]  ${field_value}
-    rwsbank.Обрати файл з необхідним типом  clarifications
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
 
@@ -481,7 +481,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Wait Until Element Is Visible  id=decision-title
     ${quantity}=  Convert To String  ${field_value}
     Run Keyword If   '${field_name}' == 'quantity'  Input Text  xpath=//input[contains(@value, "${item_id}")]/../../following-sibling::div[2]/descendant::input[contains(@name, "quantity")]  ${quantity}
-    rwsbank.Обрати файл з необхідним типом  clarifications
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
 
@@ -495,7 +495,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     ...  ELSE IF  '${fieldname}' == 'minimalStep.amount'  Input Amount  name=Lot[auctions][${index}][minimalStep][amount]  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'guarantee.amount'  Input Amount  name=Lot[auctions][${index}][guarantee][amount]  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'auctionPeriod.startDate'  Input Date Auction  name=Lot[auctions][${index}][auctionPeriod][startDate]  ${fieldvalue}
-    rwsbank.Обрати файл з необхідним типом  clarifications
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
 
