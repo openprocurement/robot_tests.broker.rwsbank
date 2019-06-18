@@ -463,19 +463,22 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 Внести зміни в лот
     [Arguments]  ${username}  ${tender_uaid}  ${fieldname}  ${fieldvalue}
+    ${file_path}  ${file_name}  ${file_content}=  create_fake_doc
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
     Wait Until Element Is Visible  id=decision-title
     Run Keyword If  '${fieldname}' == 'title'  Input Text  id=lot-title  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'description'  Input Text  id=lot-description  ${fieldvalue}
     ...  ELSE  Input Text  xpath=//*[@id="${field_name}"]  ${field_value}
-    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
+    rwsbank.Обрати файл з необхідним типом  ${file_path}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
+    Remove File  ${file_path}
 
 
 Внести зміни в актив лоту
     [Arguments]  ${username}  ${item_id}  ${tender_uaid}  ${field_name}  ${field_value}
+    ${file_path}  ${file_name}  ${file_content}=  create_fake_doc
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
     Wait Until Element Is Visible  id=decision-title
@@ -484,10 +487,12 @@ ${host}  https://test.torgy.rwsbank.com.ua
     rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
+    Remove File  ${file_path}
 
 
 Внести зміни в умови проведення аукціону
     [Arguments]  ${username}  ${tender_uaid}  ${fieldname}  ${fieldvalue}  ${index}
+    ${file_path}  ${file_name}  ${file_content}=  create_fake_doc
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
     Wait Until Element Is Visible  id=decision-title
@@ -498,6 +503,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
+    Remove File  ${file_path}
 
 
 Завантажити документ для видалення лоту
