@@ -501,11 +501,11 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 
 Завантажити документ для видалення лоту
-    [Arguments]  ${username}  ${tender_uaid}
+    [Arguments]  ${username}  ${tender_uaid}  ${file_path}
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
-    rwsbank.Обрати файл з необхідним типом  clarifications
-    rwsbank.Обрати файл з необхідним типом  cancellationDetails
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  cancellationDetails
     Scroll To And Click Element  id=btn-submit-form
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
     Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
