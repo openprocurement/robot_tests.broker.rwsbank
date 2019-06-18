@@ -424,7 +424,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 Завантажити документ в лот з типом
     [Arguments]  ${username}  ${tender_uaid}  ${file_path}  ${doc_type}
-    Wait Until Element Is Visible  id=decision-title
+    Wait Until Element Is Visible  xpath=(//input[@id='decision-title'])[1]
     Choose File  xpath=(//*[@action="/tender/fileupload"]/input)[last()]  ${file_path}
     Sleep  2
     ${last_input_number}=  Get Element Attribute  xpath=(//input[contains(@class, "document-title") and not (contains(@id, "__empty__"))])[last()]@id
