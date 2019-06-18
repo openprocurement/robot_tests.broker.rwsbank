@@ -411,20 +411,11 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 Завантажити ілюстрацію в лот
     [Arguments]  ${username}  ${tender_uaid}  ${filepath}
-    rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
-    Click Element  xpath=//a[contains(@href, "lot/update")]
     rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  illustration
-    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
-    Scroll To And Click Element  id=btn-submit-form
-    Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
-    Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
-    ...  Синхронізуватися із ЦБД
-    ...  AND  Page Should Not Contain  Документ завантажується...
 
 
-Завантажити документ в лот з типом
-    [Arguments]  ${username}  ${tender_uaid}  ${file_path}  ${doc_type}
-    Wait Until Element Is Visible  xpath=(//input[@id='decision-title'])[1]
+Обрати файл з необхідним типом
+    [Arguments]  ${file_path}  ${doc_type}
     Choose File  xpath=(//*[@action="/tender/fileupload"]/input)[last()]  ${file_path}
     Sleep  2
     ${last_input_number}=  Get Element Attribute  xpath=(//input[contains(@class, "document-title") and not (contains(@id, "__empty__"))])[last()]@id
@@ -432,6 +423,20 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Input Text  id=document-${last_input_number}-title  ${file_path.split('/')[-1]}
     Select From List By Value  id=document-${last_input_number}-level  lot
     Select From List By Value  id=document-${last_input_number}-documenttype  ${doc_type}
+
+
+Завантажити документ в лот з типом
+    [Arguments]  ${username}  ${tender_uaid}  ${file_path}  ${doc_type}
+    rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
+    Click Element  xpath=//a[contains(@href, "lot/update")]
+    Wait Until Element Is Visible  xpath=(//input[@id='decision-title'])[1]
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  ${doc_type}
+    Scroll To And Click Element  id=btn-submit-form
+    Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
+    Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
+    ...  Синхронізуватися із ЦБД
+    ...  AND  Page Should Not Contain  Документ завантажується...
 
 
 
@@ -448,7 +453,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     ${last_input_number}=  Set Variable  ${last_input_number.split('-')[1]}
     Input Text  xpath=(//input[@id="document-${last_input_number}-title"])[last()]  ${file_path.split('/')[-1]}
     Select From List By Value  xpath=(//select[@id="document-${last_input_number}-documenttype"])[last()]  ${doc_type}
-    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
     Scroll To And Click Element  id=btn-submit-form
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
     Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
@@ -464,7 +469,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Run Keyword If  '${fieldname}' == 'title'  Input Text  id=lot-title  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'description'  Input Text  id=lot-description  ${fieldvalue}
     ...  ELSE  Input Text  xpath=//*[@id="${field_name}"]  ${field_value}
-    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
 
@@ -476,7 +481,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Wait Until Element Is Visible  id=decision-title
     ${quantity}=  Convert To String  ${field_value}
     Run Keyword If   '${field_name}' == 'quantity'  Input Text  xpath=//input[contains(@value, "${item_id}")]/../../following-sibling::div[2]/descendant::input[contains(@name, "quantity")]  ${quantity}
-    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
 
@@ -490,7 +495,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     ...  ELSE IF  '${fieldname}' == 'minimalStep.amount'  Input Amount  name=Lot[auctions][${index}][minimalStep][amount]  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'guarantee.amount'  Input Amount  name=Lot[auctions][${index}][guarantee][amount]  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'auctionPeriod.startDate'  Input Date Auction  name=Lot[auctions][${index}][auctionPeriod][startDate]  ${fieldvalue}
-    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
 
@@ -499,8 +504,8 @@ ${host}  https://test.torgy.rwsbank.com.ua
     [Arguments]  ${username}  ${tender_uaid}  ${file_path}
     rwsbank.Пошук лоту по ідентифікатору  ${username}  ${tender_uaid}
     Click Element  xpath=//a[contains(@href, "lot/update")]
-    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  clarifications
-    rwsbank.Завантажити документ в лот з типом  ${username}  ${tender_uaid}  ${filepath}  cancellationDetails
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  clarifications
+    rwsbank.Обрати файл з необхідним типом  ${filepath}  cancellationDetails
     Scroll To And Click Element  id=btn-submit-form
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
     Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
